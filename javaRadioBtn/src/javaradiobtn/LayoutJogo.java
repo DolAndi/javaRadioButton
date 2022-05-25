@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.trueorfalse;
+package javaradiobtn;
 
+import java.awt.Color;
+import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
 /**
@@ -12,25 +14,61 @@ import javax.swing.JRadioButton;
  */
 public class LayoutJogo extends javax.swing.JFrame {
     
-    String[] questoes = {"Questao 1"};
-    String[][] opcoes = {{"Verdadeiro", "Falso"}};
+    String[] questoes = {
+        "Platão é quem fez a famosa frase “Penso, logo existo”?",
+        "O Vaticano é o menor país do mundo?",
+        "O número pi possui infinitas casas decimais?",
+        "A tabela periódica possui 118 elementos?",
+        "O fogo foi descoberto no período Paleolítico da história?",
+        "O Monte Roraima é a montanha mais alta do Brasil?",
+        "Em 1902 foi eleito o primeiro presidente do Brasil?",
+        "Filantropo é a definição de uma pessoa que possui uma riqueza enorme?",
+        "O chuveiro elétrico é uma invenção totalmente brasileira?",
+        "O Japão é o país com a maior expectativa de vida no mundo?"
+    };
+    String[][] opcoes = {
+        {"Verdadeiro", "Falso"},
+        {"Falso","Verdadeiro"},
+        {"Falso","Verdadeiro"},
+        {"Falso","Verdadeiro"},
+        {"Falso","Verdadeiro"},
+        {"Verdadeiro", "Falso"},
+        {"Verdadeiro", "Falso"},
+        {"Verdadeiro", "Falso"},
+        {"Falso","Verdadeiro"},
+        {"Falso","Verdadeiro"}
+    
+    };
     int index = 0;
-    int correct = 0;
+    int corretos = 0;
+    
+    ButtonGroup grupoBotoes = new ButtonGroup();
 
     
     public LayoutJogo() {
         initComponents();
+        grupoBotoes.add(bt_True);
+        grupoBotoes.add(bt_False);
+        
         NextActionPerformed(null);
     }
     
     public void getSelecionaOpcao(JRadioButton rdbotao){
+        
+        System.out.println(rdbotao.getText());
+        System.out.println(opcoes[index][1]);
+        if(rdbotao.getText().equals(opcoes[index][1])){
+            corretos++; 
+        }
+            
         index++;
+        enabledBotao(false);
     
     }
     
     public void enabledBotao( boolean sim_nao){
-        True.setEnabled(sim_nao);
-        False.setEnabled(sim_nao);
+        bt_True.setEnabled(sim_nao);
+        bt_False.setEnabled(sim_nao);
 }
 
     /**
@@ -45,8 +83,8 @@ public class LayoutJogo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Container = new javax.swing.JPanel();
         Question = new javax.swing.JLabel();
-        True = new javax.swing.JRadioButton();
-        False = new javax.swing.JRadioButton();
+        bt_True = new javax.swing.JRadioButton();
+        bt_False = new javax.swing.JRadioButton();
         Next = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,21 +114,21 @@ public class LayoutJogo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        True.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        True.setText("   Verdadeiro");
-        True.addActionListener(new java.awt.event.ActionListener() {
+        bt_True.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        bt_True.setText("   Verdadeiro");
+        bt_True.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TrueActionPerformed(evt);
+                bt_TrueActionPerformed(evt);
             }
         });
 
-        False.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        False.setText("       Falso");
-        False.setActionCommand("Falso");
-        False.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        False.addActionListener(new java.awt.event.ActionListener() {
+        bt_False.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        bt_False.setText("       Falso");
+        bt_False.setActionCommand("Falso");
+        bt_False.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bt_False.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FalseActionPerformed(evt);
+                bt_FalseActionPerformed(evt);
             }
         });
 
@@ -108,18 +146,16 @@ public class LayoutJogo extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Next, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(Next, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(True, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                        .addComponent(False, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(83, 83, 83)
+                        .addComponent(bt_True, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addComponent(bt_False, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -127,43 +163,82 @@ public class LayoutJogo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(True, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(False, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Next, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                    .addComponent(bt_True, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_False, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(Next, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
-        Question.setText(questoes[index]);
-        True.setText(opcoes[index][0]);
-        False.setText(opcoes[index][1]);
+        if(Next.getText().equals("Reiniciar o Jogo")) {
+            
+            Next.setText("Próximo");
+            Container.setBackground(new java.awt.Color(204,204,204));
+            index = 0;
+            corretos = 0;
+        
+        }
+        
+        if(index == questoes.length){
+            
+           Question.setText("Sua pontuação: " + corretos + "/" + questoes.length);
+           if(corretos >= (float) questoes.length/2){
+               Container.setBackground(Color.GREEN);
+           }else{
+               Container.setBackground(Color.RED);
+               enabledBotao(true);
+           }
+           
+           Next.setText("Reiniciar o Jogo");
+           
+        }else{
+           enabledBotao(true);
+           Question.setText(questoes[index]);
+           bt_True.setText(opcoes[index][0]);
+           bt_False.setText(opcoes[index][1]);
+           
+           if(index == questoes.length-1){
+               Next.setText("Final, visualize seu resultado");  
+           }
+            
+       
+        }
+        
+    grupoBotoes.clearSelection();
         
     }//GEN-LAST:event_NextActionPerformed
 
-    private void TrueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrueActionPerformed
-        index++;
-    }//GEN-LAST:event_TrueActionPerformed
+    private void bt_TrueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_TrueActionPerformed
+        getSelecionaOpcao(bt_True);
+        
+    }//GEN-LAST:event_bt_TrueActionPerformed
 
-    private void FalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FalseActionPerformed
-        index++;
-    }//GEN-LAST:event_FalseActionPerformed
+    private void bt_FalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_FalseActionPerformed
+        getSelecionaOpcao(bt_False);
+    }//GEN-LAST:event_bt_FalseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +266,7 @@ public class LayoutJogo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LayoutJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -202,10 +278,10 @@ public class LayoutJogo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Container;
-    private javax.swing.JRadioButton False;
     private javax.swing.JButton Next;
     private javax.swing.JLabel Question;
-    private javax.swing.JRadioButton True;
+    private javax.swing.JRadioButton bt_False;
+    private javax.swing.JRadioButton bt_True;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
